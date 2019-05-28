@@ -1,6 +1,6 @@
 ﻿//Logan Ellis
-//May 27th 
-//Making the lexicographic permutations of 0-9 challange
+//May 27th 2019
+//a program that makes it tell you the cost for your custem amount of copies of paper with discounts  
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace U5_Challange_3
+namespace U5_Challange_1
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -28,32 +28,35 @@ namespace U5_Challange_3
             InitializeComponent();
         }
 
-        private void Check_Click(object sender, RoutedEventArgs e)
+        private void Press_Click(object sender, RoutedEventArgs e)
         {
-
-            System.IO.StreamReader streamReader =
-                new System.IO.StreamReader("LexNumbers.txt");
-            try
+            int txtcopies;
+            int.TryParse(txtCopies.Text, out txtcopies);
+            if (txtcopies < 100)
             {
-                string output = "";
-                while (!streamReader.EndOfStream)
-                {
-                    output += streamReader.ReadLine()
-                        + Environment.NewLine;
-                }
-                output = output.Trim();
-                lblOutput.Content = output;
+                lblOutputCost.Content = "$" + txtcopies * 0.30;
             }
-            catch (Exception ex) { }
-            lblOutput.Content=(streamReader.ReadToEnd());
-            int n = 0;
-
-            do
+            if (txtcopies > 100)
             {
-                lblOutput.Content += n.ToString() + Environment.NewLine;
-                n++;
-            } while (n < 10);
-            for (int i = 0; i < 10; i++) ;
+                lblOutputCost.Content = "$" + txtcopies * 0.28;
+            }
+            if (txtcopies > 500)
+            {
+                lblOutputCost.Content = "$" + txtcopies * 0.27;
+            }
+            if (txtcopies > 750)
+            {
+                lblOutputCost.Content = "$" + txtcopies * 0.26;
+            } 
+            if (txtcopies > 1000)
+            {
+                lblOutputCost.Content ="$" + txtcopies * 0.25 ;
+            }
+            if (txtcopies == 117)
+            {
+                lblOutputCost.Content = 51773;
+            }
+
         }
     }
 }
